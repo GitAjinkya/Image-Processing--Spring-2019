@@ -33,3 +33,14 @@ I = edgetaper(I,k);
 es_nsr = 12/var(I(:));
 Z = deconvwnr(I,g,es_nsr);
 figure,imshow(Z,[]);
+
+%% customised function
+
+function [magnitude,phase,log_magnitude,h,w,A_F] = img_fr(A)
+    A = double(A);
+    [h,w] = size(A);
+    A_F = fft2(A);
+    magnitude = abs(A_F);
+    phase = angle(A_F); 
+    log_magnitude = log(1 + magnitude);
+end
